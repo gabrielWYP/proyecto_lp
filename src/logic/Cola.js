@@ -1,4 +1,4 @@
- class Cola {
+class Cola {
     constructor() {
         this.cola = []
     }
