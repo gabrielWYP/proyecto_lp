@@ -1,0 +1,114 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #e9e3e3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+}
+
+button {
+  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkgray;
+}
+
+.grilla {
+  width: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
+  height: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
+  border: 2px solid #000000;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 32px; /* Reducido para que se ajuste mejor a las nuevas dimensiones */
+  background-color: #b8edff;
+}
+
+.mapa {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Cambiado a 12 columnas */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.grilla.selected {
+  background-color: #ff0000;
+}
+
+.Modo-Juego {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.Modo-Edicion {
+  font-size: 24px;
+  font-weight: bold;
+  color: purple;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.grilla.origen {
+  background-color: #04ff00;
+}
+
+.grilla.destino {
+  background-color: #ffea00;
+}
+
+.grilla.track {
+  background-color: #0000ff;
+}
