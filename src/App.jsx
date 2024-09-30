@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { Grilla} from './components/Grilla';
+import {Grilla} from './components/Grilla';
 import {Cuadro} from './components/Cuadro'
 import BFS from './logic/BFS';
 
