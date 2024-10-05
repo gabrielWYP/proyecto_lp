@@ -19,7 +19,7 @@ export const Grilla = ({updateIzq, updateDer, children, isSelected,rowIndex,colI
       };
 
     const handleClickIzq = () => {
-        if (modo === "Modo-Edicion") {
+        if (modo === "Modo-Edicion" && (!origen || (rowIndex !== origen.row || colIndex !== origen.col)) && (!destino || (rowIndex !== destino.row || colIndex !== destino.col))) {
             updateIzq(rowIndex,colIndex)
         } else if ( modo === "Modo-Juego") {
             if (!origen) {

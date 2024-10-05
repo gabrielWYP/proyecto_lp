@@ -9,11 +9,13 @@ function App() {
   const [modo,setModo] = useState("Modo-Juego")
   const [origen, setOrigen] = useState(null)
   const [destino, setDestino] = useState(null)
+  const [caminoActual, setCaminoActual] = useState([]); // Nuevo estado para almacenar el camino actual
 
   const resetMapa = () => {
     setMapa(Array.from({ length: 6 }, () => Array(12).fill(false)));
     setOrigen(null)
     setDestino(null)
+    setCaminoActual([]); // Limpiar el camino actual
   };
 
   const updateIzq = (rowIndex, colIndex) => {
@@ -30,11 +32,11 @@ function App() {
     setMapa(newMapa);
   };
 
-  const updateTrack = (camino) => {
+  const updateTrack = (camino, clear = false) => {
     const newMapa = mapa.map((fila, i) =>
       fila.map((celda, j) => {
         const inPath = camino.find(cell => cell.row === i && cell.col === j);
-        return inPath ? "T" : celda;
+        return inPath ? (clear ? false : "T") : celda;
       })
     );
     setMapa(newMapa);
@@ -50,7 +52,6 @@ function App() {
   const selDestino = (rowIndex, colIndex) => {
     mapa[rowIndex][colIndex] === false && origen != null && !(origen.row === rowIndex && origen.col === colIndex) ? setDestino({row: rowIndex, col:colIndex}) : alert("Seleccione una casilla valida")
   }
-
 
   const handleKeyPress = (event) => {
     switch(event.key) {
@@ -68,10 +69,14 @@ function App() {
         setDestino(null);
         break;
       case " ":
-        if (origen && destino) {
+        if (caminoActual.length > 0) {
+          updateTrack(caminoActual, true); // Limpiar el camino actual
+          setCaminoActual([]); // Limpiar el estado del camino actual
+        } else if (origen && destino) {
           const camino = BFS(origen.row, origen.col, destino.row, destino.col, 6, 12, mapa);
           if (camino) {
             updateTrack(camino);
+            setCaminoActual(camino); // Almacenar el camino actual
           } else {
             alert("No se encontró un camino");
           }
@@ -90,7 +95,7 @@ useEffect(() => {
     return () => {
         window.removeEventListener('keydown', handleKeyPress);
     };
-}, [origen,destino,mapa]);
+}, [origen,destino,mapa,caminoActual]);
 
   return (
     <main className='path'>
