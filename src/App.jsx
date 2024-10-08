@@ -5,17 +5,19 @@ import {Cuadro} from './components/Cuadro'
 import BFS from './logic/BFS';
 
 function App() {
+
+  //Estados para el mapa, modo, origen, destino y camino actual
   const [mapa, setMapa] = useState(Array.from({ length: 6 }, () => Array(12).fill(false)));
   const [modo,setModo] = useState("Modo-Juego")
   const [origen, setOrigen] = useState(null)
   const [destino, setDestino] = useState(null)
-  const [caminoActual, setCaminoActual] = useState([]); // Nuevo estado para almacenar el camino actual
+  const [caminoActual, setCaminoActual] = useState([]);
 
   const resetMapa = () => {
     setMapa(Array.from({ length: 6 }, () => Array(12).fill(false)));
     setOrigen(null)
     setDestino(null)
-    setCaminoActual([]); // Limpiar el camino actual
+    setCaminoActual([]);
   };
   const updateIzq = (rowIndex, colIndex) => {
     const newMapa = mapa.map((fila, i) => 
@@ -69,13 +71,13 @@ function App() {
         break;
       case " ":
         if (caminoActual.length > 0) {
-          updateTrack(caminoActual, true); // Limpiar el camino actual
-          setCaminoActual([]); // Limpiar el estado del camino actual
+          updateTrack(caminoActual, true); 
+          setCaminoActual([]); 
         } else if (origen && destino) {
           const camino = BFS(origen.row, origen.col, destino.row, destino.col, 6, 12, mapa);
           if (camino) {
             updateTrack(camino);
-            setCaminoActual(camino); // Almacenar el camino actual
+            setCaminoActual(camino);
           } else {
             alert("No se encontró un camino");
           }

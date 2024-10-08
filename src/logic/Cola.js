@@ -2,7 +2,7 @@ class Cola {
     constructor() {
         this.cola = []
     }
-
+    
     encolar(elemento) {
         this.cola.push(elemento);
         return this.cola;
