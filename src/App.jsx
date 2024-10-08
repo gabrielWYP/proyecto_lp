@@ -17,7 +17,6 @@ function App() {
     setDestino(null)
     setCaminoActual([]); // Limpiar el camino actual
   };
-
   const updateIzq = (rowIndex, colIndex) => {
     const newMapa = mapa.map((fila, i) => 
       fila.map((celda, j) => (i === rowIndex && j === colIndex ? true : celda))

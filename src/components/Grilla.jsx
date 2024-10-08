@@ -1,5 +1,4 @@
 
-
 export const Grilla = ({updateIzq, updateDer, children, isSelected,rowIndex,colIndex, modo, selOrigen, selDestino,  origen, destino}) => {
 
     const getClassName = () => {

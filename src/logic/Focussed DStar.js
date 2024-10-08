@@ -1,4 +1,7 @@
+import Cola from "./Cola.js"
 
-function FocussedDStar () {
+export function FocussedDStar () {
     
 }
+
+export default FocussedDStar;
