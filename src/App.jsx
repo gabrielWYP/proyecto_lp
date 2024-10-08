@@ -13,12 +13,16 @@ function App() {
   const [destino, setDestino] = useState(null)
   const [caminoActual, setCaminoActual] = useState([]);
 
+  //Funcion para resetear mapa
+
   const resetMapa = () => {
     setMapa(Array.from({ length: 6 }, () => Array(12).fill(false)));
     setOrigen(null)
     setDestino(null)
     setCaminoActual([]);
   };
+
+  //Funciones de actualizacion para el modo de edicion
   const updateIzq = (rowIndex, colIndex) => {
     const newMapa = mapa.map((fila, i) => 
       fila.map((celda, j) => (i === rowIndex && j === colIndex ? true : celda))
@@ -33,6 +37,8 @@ function App() {
     setMapa(newMapa);
   };
 
+  //Funcion para actualizar el camino
+
   const updateTrack = (camino, clear = false) => {
     const newMapa = mapa.map((fila, i) =>
       fila.map((celda, j) => {
@@ -42,6 +48,8 @@ function App() {
     );
     setMapa(newMapa);
   };
+
+  //Funciones para seleccionar origen y destino
 
   const selOrigen = (rowIndex, colIndex) => {
     if (!mapa[rowIndex][colIndex]) {
@@ -54,6 +62,8 @@ function App() {
     mapa[rowIndex][colIndex] === false && origen != null && !(origen.row === rowIndex && origen.col === colIndex) ? setDestino({row: rowIndex, col:colIndex}) : alert("Seleccione una casilla valida")
   }
 
+
+  //Manejo de eventos de teclado
   const handleKeyPress = (event) => {
     switch(event.key) {
       case "Control":
@@ -91,6 +101,8 @@ function App() {
     }
 };
 
+//Captura de eventos de teclado
+
 useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
     return () => {
@@ -98,6 +110,8 @@ useEffect(() => {
     };
 }, [origen,destino,mapa,caminoActual]);
 
+
+//Renderizado de la aplicacion
   return (
     <main className='path'>
       <div className="header-container">
