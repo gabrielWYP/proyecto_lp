@@ -71,9 +71,6 @@ function App() {
           prevModo === "Modo-Juego" ? "Modo-Edicion" : "Modo-Juego"
         )
         break;
-      case "a":
-        alert("Has presionado A")
-        break;
       case "Escape":
         resetMapa();
         setOrigen(null);
