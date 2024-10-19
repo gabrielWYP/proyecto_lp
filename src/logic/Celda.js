@@ -1,12 +1,13 @@
 
 export class Celda {
-    constructor(x,y,g = Infinity,rhs = Infinity, destino) {
+    constructor(x,y,g = Infinity,rhs = Infinity) {
         this.x = x;
         this.y = y;
         this.g = g;
         this.rhs = rhs;
         this.neighbors = [];
-        this.destino = destino;
+        this.estado = true;
+        this.tag='NEW';
     }
 
     heuristica(meta) {
