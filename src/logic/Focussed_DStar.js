@@ -13,7 +13,7 @@ function FocussedDStar(rowStart,colStart,rowEnd,colEnd,R,C,mapa){
     const visited = Array.from({ length: R }, () => Array(C).fill(false));
     const path = Array.from({ length: R }, () => Array(C).fill(null));
     
-
+    //holaa
 
     const DR = [-1, +1, 0, 0]; 
     const DC = [0, 0, +1, -1]; 
