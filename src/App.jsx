@@ -135,10 +135,11 @@ useEffect(() => {
       document.documentElement.style.setProperty('--numCols', numCols);
       document.documentElement.style.setProperty('--numRows', numRows);
     }
+    handleResize();
     window.addEventListener('resize',handleResize);
 
     //Limpieza
-    return () => window.removeEventListener('resize',handleResize());
+    return () => window.removeEventListener('resize',handleResize);
 }, []);
 //Para evitar bucles, anade la lista vacia de dependencias
 
