@@ -7,8 +7,8 @@ import BFS from './logic/BFS';
 function App() {
 
   //Estados para el mapa, modo, origen, destino y camino actual
-  const [largo, setLargo] = useState(12);
-  const [ancho, setAncho] = useState(6);
+  const [largo, setLargo] = useState(7);
+  const [ancho, setAncho] = useState(14);
   const [mapa, setMapa] = useState(Array.from({ length: ancho }, () => Array(largo).fill(false)));
   const [modo,setModo] = useState("Modo-Juego")
   const [origen, setOrigen] = useState(null)
@@ -114,24 +114,28 @@ useEffect(() => {
 
 useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth * 0.7;
-      const height = window.innerHeight * 0.7;
+      const width = window.innerWidth * 0.75;
+      const height = window.innerHeight * 0.75;
 
       const numCols = Math.floor(width / 100);
       const numRows = Math.floor(height / 100);
+      console.log(numCols,numRows)
 
-      setAncho(numCols);
-      setLargo(numRows);
 
-      setMapa(Array.from({ length: numCols }, () => Array(numRows).fill(false)))
+      //Nuevos estados
+      setAncho(numRows);
+      setLargo(numCols);
+      setOrigen(null)
+      setDestino(null)
+      setCaminoActual([]);
+
+      setMapa(Array.from({ length: numRows }, () => Array(numCols).fill(false)))
+
+      //Para el display
       document.documentElement.style.setProperty('--numCols', numCols);
       document.documentElement.style.setProperty('--numRows', numRows);
-
-      
     }
-
-    handleResize();
-    window.addEventListener('resize',handleResize());
+    window.addEventListener('resize',handleResize);
 
     //Limpieza
     return () => window.removeEventListener('resize',handleResize());
