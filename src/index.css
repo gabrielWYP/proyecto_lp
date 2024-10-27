@@ -31,21 +31,31 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px auto;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
-  margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.titulo, .Modo-Juego, .Modo-Edicion, button {
+  flex-grow: 1;
+  text-align: center;
 }
 
 .titulo {
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: bold;
   color: green;
+  text-align: left;
 }
 
 button {
@@ -63,23 +73,27 @@ button:hover {
 }
 
 .grilla {
-  width: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
-  height: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
+  width: 80px;
+  height: 80px;
   border: 2px solid #000000;
   border-radius: 5px;
   display: grid;
   place-items: center;
   cursor: pointer;
-  font-size: 32px; /* Reducido para que se ajuste mejor a las nuevas dimensiones */
+  font-size: 32px;
   background-color: #b8edff;
 }
 
 .mapa {
   display: grid;
-  grid-template-columns: repeat(12, 1fr); /* Cambiado a 12 columnas */
-  gap: 10px;
-  margin-top: 20px;
+  grid-template-columns: repeat(var(--numCols), 1fr);
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 1200px;
+  gap : 0.5vh 0.5vw;
 }
+
 
 .grilla.selected {
   background-color: #ff0000;
@@ -89,7 +103,7 @@ button:hover {
   font-size: 24px;
   font-weight: bold;
   color: black;
-  text-align: center;
+  text-align: right;
   margin-left: 20px;
 }
 
@@ -97,7 +111,7 @@ button:hover {
   font-size: 24px;
   font-weight: bold;
   color: red;
-  text-align: center;
+  text-align: right;
   margin-left: 20px;
 }
 

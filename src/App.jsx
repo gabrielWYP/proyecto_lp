@@ -7,7 +7,9 @@ import BFS from './logic/BFS';
 function App() {
 
   //Estados para el mapa, modo, origen, destino y camino actual
-  const [mapa, setMapa] = useState(Array.from({ length: 6 }, () => Array(12).fill(false)));
+  const [rows, setRows] = useState(7);
+  const [cols, setCols] = useState(14);
+  const [mapa, setMapa] = useState(Array.from({ length: rows }, () => Array(cols).fill(false)));
   const [modo,setModo] = useState("Modo-Juego")
   const [origen, setOrigen] = useState(null)
   const [destino, setDestino] = useState(null)
@@ -16,7 +18,7 @@ function App() {
   //Funcion para resetear mapa
 
   const resetMapa = () => {
-    setMapa(Array.from({ length: 6 }, () => Array(12).fill(false)));
+    setMapa(Array.from({ length: rows }, () => Array(cols).fill(false)));
     setOrigen(null)
     setDestino(null)
     setCaminoActual([]);
@@ -81,7 +83,7 @@ function App() {
           updateTrack(caminoActual, true); 
           setCaminoActual([]); 
         } else if (origen && destino) {
-          const camino = BFS(origen.row, origen.col, destino.row, destino.col, 6, 12, mapa);
+          const camino = BFS(origen.row, origen.col, destino.row, destino.col, rows, cols, mapa);
           if (camino) {
             updateTrack(camino);
             setCaminoActual(camino);
@@ -106,6 +108,42 @@ useEffect(() => {
         window.removeEventListener('keydown', handleKeyPress);
     };
 }, [origen,destino,mapa,caminoActual]);
+
+//esto se produce cada que se actualice alguno de los estados de arriba
+
+
+useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth * 0.75;
+      const height = window.innerHeight * 0.75;
+
+      const numCols = Math.floor(width / 100);
+      const numRows = Math.floor(height / 100);
+      console.log(numCols,numRows)
+
+
+      //Nuevos estados
+      setRows(numRows);
+      setCols(numCols);
+
+      setOrigen(null)
+      setDestino(null)
+      setCaminoActual([]);
+
+      setMapa(Array.from({ length: numRows }, () => Array(numCols).fill(false)))
+
+      //Para el display
+      document.documentElement.style.setProperty('--numCols', numCols);
+      document.documentElement.style.setProperty('--numRows', numRows);
+    }
+    handleResize();
+    window.addEventListener('resize',handleResize);
+
+    //Limpieza
+    return () => window.removeEventListener('resize',handleResize);
+}, []);
+//Para evitar bucles, anade la lista vacia de dependencias
+
 
 
 //Renderizado de la aplicacion
