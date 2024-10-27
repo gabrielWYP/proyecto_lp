@@ -7,9 +7,9 @@ import BFS from './logic/BFS';
 function App() {
 
   //Estados para el mapa, modo, origen, destino y camino actual
-  const [largo, setLargo] = useState(7);
-  const [ancho, setAncho] = useState(14);
-  const [mapa, setMapa] = useState(Array.from({ length: ancho }, () => Array(largo).fill(false)));
+  const [rows, setRows] = useState(7);
+  const [cols, setCols] = useState(14);
+  const [mapa, setMapa] = useState(Array.from({ length: rows }, () => Array(cols).fill(false)));
   const [modo,setModo] = useState("Modo-Juego")
   const [origen, setOrigen] = useState(null)
   const [destino, setDestino] = useState(null)
@@ -18,7 +18,7 @@ function App() {
   //Funcion para resetear mapa
 
   const resetMapa = () => {
-    setMapa(Array.from({ length: ancho }, () => Array(largo).fill(false)));
+    setMapa(Array.from({ length: rows }, () => Array(cols).fill(false)));
     setOrigen(null)
     setDestino(null)
     setCaminoActual([]);
@@ -83,7 +83,7 @@ function App() {
           updateTrack(caminoActual, true); 
           setCaminoActual([]); 
         } else if (origen && destino) {
-          const camino = BFS(origen.row, origen.col, destino.row, destino.col, ancho, largo, mapa);
+          const camino = BFS(origen.row, origen.col, destino.row, destino.col, rows, cols, mapa);
           if (camino) {
             updateTrack(camino);
             setCaminoActual(camino);
@@ -123,8 +123,9 @@ useEffect(() => {
 
 
       //Nuevos estados
-      setAncho(numRows);
-      setLargo(numCols);
+      setRows(numRows);
+      setCols(numCols);
+
       setOrigen(null)
       setDestino(null)
       setCaminoActual([]);

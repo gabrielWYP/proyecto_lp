@@ -73,14 +73,14 @@ button:hover {
 }
 
 .grilla {
-  width: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
-  height: 80px; /* Ajustado para que se mantenga proporción en 12x6 */
+  width: 80px;
+  height: 80px;
   border: 2px solid #000000;
   border-radius: 5px;
   display: grid;
   place-items: center;
   cursor: pointer;
-  font-size: 32px; /* Reducido para que se ajuste mejor a las nuevas dimensiones */
+  font-size: 32px;
   background-color: #b8edff;
 }
 
