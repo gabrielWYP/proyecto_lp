@@ -100,7 +100,7 @@ function exploreNeighbours(r, c, matriz, DR, DC, path, R, C, visited, colaRow, c
 function caminoDestino(row, col, path) {
 
     //Construccion del camino a partir de la matriz de camino
-    const camino = [];
+    const camino = []; 
     let current = { row, col };
     //Se recorre la matriz de camino hasta llegar al origen (null camino)
 

@@ -3,6 +3,7 @@ import './App.css';
 import {Grilla} from './components/Grilla';
 import {Cuadro} from './components/Cuadro'
 import BFS from './logic/BFS';
+import FDS from './logic/FDS';
 
 function App() {
 
@@ -77,11 +78,11 @@ function App() {
         setDestino(null);
         break;
       case " ":
-        if (caminoActual.length > 0) {
+        if (caminoActual.length > 0) { 
           updateTrack(caminoActual, true); 
           setCaminoActual([]); 
         } else if (origen && destino) {
-          const camino = BFS(origen.row, origen.col, destino.row, destino.col, 6, 12, mapa);
+          const camino = FDS(origen.row, origen.col, destino.row, destino.col, 6, 12, mapa);
           if (camino) {
             updateTrack(camino);
             setCaminoActual(camino);
