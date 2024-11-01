@@ -1,6 +1,7 @@
 import Cola from "./Cola.js"
 
 function BFS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
+    const start = performance.now()
     //Creacion de colas de prioridad para cada fila y columna
     const colaRow = new Cola();
     const colaCol = new Cola();
@@ -61,6 +62,9 @@ function BFS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
     //Procedimiento si se encuentra el destino
 
     if (reachEnd) {
+        const end = performance.now()
+
+        console.log(`El algoritmo tomo ${end- start} milisegundos`)
         console.log("Movimientos necesarios:", move_count);
         console.log("Camino más corto:", caminoDestino(rowEnd, colEnd, path));
         return caminoDestino(rowEnd, colEnd, path);

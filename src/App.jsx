@@ -3,6 +3,7 @@ import './App.css';
 import {Grilla} from './components/Grilla';
 import {Cuadro} from './components/Cuadro'
 import BFS from './logic/BFS';
+import FDS from './logic/Focussed DStar';
 
 function App() {
 
@@ -93,7 +94,18 @@ function App() {
         }
         break;
       case "Enter":
-        null
+        if (caminoActual.length > 0) {
+          updateTrack(caminoActual, true); 
+          setCaminoActual([]); 
+        } else if (origen && destino) {
+          const camino = FDS(origen.row, origen.col, destino.row, destino.col, rows, cols, mapa);
+          if (camino) {
+            updateTrack(camino);
+            setCaminoActual(camino);
+          } else {
+            alert("No se encontró un camino");
+          }
+        }
         break;
       default:
         null
