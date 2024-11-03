@@ -4,6 +4,7 @@ import {Grilla} from './components/Grilla';
 import {Cuadro} from './components/Cuadro'
 import BFS from './logic/BFS';
 import FDS from './logic/Focussed DStar';
+//esto es un commit de prueba
 
 function App() {
 
