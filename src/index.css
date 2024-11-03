@@ -96,7 +96,7 @@ button:hover {
 
 
 .grilla.selected {
-  background-color: #a128da;
+  background-color: red;
 }
 
 .Modo-Juego {
