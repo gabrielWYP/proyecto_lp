@@ -4,7 +4,7 @@ import Node from "./Node.js";
 // Función principal FDS
 function FDS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
     // Crear nodos en la matriz, omitiendo los obstáculos
-    const end = performance.now()
+    const inicio = performance.now()
     const grid = Array.from(Array(R), (_, x) => Array(C).fill(null).map((_, y) => matriz[x][y] === false ? new Node(x, y) : null));
 
     const start = grid[rowStart][colStart];
@@ -23,7 +23,7 @@ function FDS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
         // Construir y retornar el camino óptimo
         if (current === goal) {
             const end = performance.now()
-            console.log(`El algoritmo tomo ${end- start} milisegundos`)
+            console.log(`El algoritmo tomo ${end- inicio} milisegundos`)
             return constructPath(goal); 
         }
 
