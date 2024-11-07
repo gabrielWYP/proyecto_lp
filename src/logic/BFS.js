@@ -63,13 +63,14 @@ function BFS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
 
     if (reachEnd) {
         const end = performance.now()
-
         console.log(`El algoritmo tomo ${end- start} milisegundos`)
         console.log("Movimientos necesarios:", move_count);
         console.log("Camino más corto:", caminoDestino(rowEnd, colEnd, path));
         return caminoDestino(rowEnd, colEnd, path);
     } else {
         console.log("No hay camino disponible");
+        const end = performance.now()
+        console.log(`El algoritmo tomo ${end- start} milisegundos`)
         return null;
     }
 }

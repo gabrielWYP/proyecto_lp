@@ -50,7 +50,8 @@ function FDS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
             }
         }
     }
-
+    const end = performance.now()
+    console.log(`El algoritmo tomo ${end- inicio} milisegundos`)
     return null; 
 }
 
