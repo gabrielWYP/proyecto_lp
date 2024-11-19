@@ -5,7 +5,7 @@ class Node {
         this.heuristic = Infinity; // valor heurístico para el D* Focussed
         this.totalCost = Infinity; // costo total desde el inicio hasta el nodo
         this.backPointer = null; // referencia al nodo anterior
-        this.status = 'NEW'; // estado del nodo (NEW, OPEN, CLOSED)
+        this.tag = 'NEW'; // estado del nodo (NEW, OPEN, CLOSED)
     }
 }
 

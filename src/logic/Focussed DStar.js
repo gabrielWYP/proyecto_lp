@@ -4,54 +4,46 @@ import Node from "./Node.js";
 // Función principal FDS
 function FDS(rowStart, colStart, rowEnd, colEnd, R, C, matriz) {
     // Crear nodos en la matriz, omitiendo los obstáculos
-    const inicio = performance.now()
     const grid = Array.from(Array(R), (_, x) => Array(C).fill(null).map((_, y) => matriz[x][y] === false ? new Node(x, y) : null));
 
     const start = grid[rowStart][colStart];
     const goal = grid[rowEnd][colEnd];
 
-    // Verificar que inicio y objetivo no sean obstáculos
+  
+  // Verificar que inicio y objetivo no sean obstáculos
     if (!start || !goal) return null;
-
     const openList = new PriorityQueue();
-    start.totalCost = 0;
-    start.heuristic = heuristic(start, goal);
-    openList.enqueue(start);
+    goal.totalCost = 0;
+    openList.enqueue(goal);
 
     while (!openList.isEmpty()) {
-        const current = openList.dequeue();
+        const current = openList.dequeue(); 
         // Construir y retornar el camino óptimo
-        if (current === goal) {
-            const end = performance.now()
-            console.log(`El algoritmo tomo ${end- inicio} milisegundos`)
-            return constructPath(goal); 
+        if (current === start) {
+            return constructPath(start); 
         }
 
-        current.status = 'CLOSED';
+        current.tag = 'CLOSED';
 
         // Expande los vecinos del nodo actual
         for (const neighbor of getNeighbors(current, grid, R, C)) {
-            if (neighbor.status === 'CLOSED') continue; // Ignorar nodos cerrados
+            if (neighbor.tag === 'CLOSED') continue; // Ignorar nodos cerrados
 
             const newCost = current.totalCost + 1; // Costo de moverse a un vecino accesible
 
-            if (neighbor.status === 'NEW' || newCost < neighbor.totalCost) {
+            if (neighbor.tag === 'NEW' || newCost < neighbor.totalCost) {
                 neighbor.totalCost = newCost;
                 neighbor.heuristic = newCost + heuristic(neighbor, goal);
-                neighbor.backPointer = current;
+                neighbor.backPointer = current; 
 
-                if (neighbor.status === 'NEW') {
-                    neighbor.status = 'OPEN';
+                if (neighbor.tag === 'NEW') {
+                    neighbor.tag = 'OPEN';
                     openList.enqueue(neighbor);
-                } else {
-                    // Si el nodo ya esta en OPEN, actualizamos su posición en la cola
-                    openList.enqueue(neighbor);
-                }
+                } 
             }
         }
     }
-    const end = performance.now()
-    console.log(`El algoritmo tomo ${end- inicio} milisegundos`)
+
     return null; 
 }
 
